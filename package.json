@@ -1,0 +1,19 @@
+{
+  "name": "docker-fastify",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "tsnd -r tsconfig-paths/register --respawn --transpile-only --exit-child ./src/bootstrap.ts"
+  },
+  "dependencies": {
+    "fastify": "4.19.2",
+    "fastify-zod": "1.4.0"
+  },
+  "devDependencies": {
+    "@types/node": "18.16.1",
+    "ts-node-dev": "2.0.0",
+    "tsconfig-paths": "4.2.0",
+    "typescript": "5.2.2"
+  }
+}
