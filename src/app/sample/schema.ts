@@ -1,18 +1,30 @@
 import { z } from "zod";
 
-export const getSampleRequestSchema = z.object({
-  message: z.string().optional(),
-});
+export const getMessageRequestSchema = z.object({});
 
-export const getSampleResponseSchema = z.object({
+export const getMessageResponseSchema = z.object({
   message: z.string(),
 });
 
-export type GetSampleRequest = z.infer<typeof getSampleRequestSchema>;
+export type GetMessageRequest = z.infer<typeof getMessageRequestSchema>;
 
-export type GetSampleResponse = z.infer<typeof getSampleResponseSchema>;
+export type GetMessageResponse = z.infer<typeof getMessageResponseSchema>;
+
+export const postMessageRequestSchema = z.object({
+  message: z.string(),
+});
+
+export const postMessageResponseSchema = z.object({
+  message: z.string(),
+});
+
+export type PostMessageRequest = z.infer<typeof postMessageRequestSchema>;
+
+export type PostMessageResponse = z.infer<typeof postMessageResponseSchema>;
 
 export const sampleSchemas = {
-  getSampleRequestSchema,
-  getSampleResponseSchema,
+  getMessageRequestSchema,
+  getMessageResponseSchema,
+  postMessageRequestSchema,
+  postMessageResponseSchema,
 };

@@ -9,10 +9,14 @@
   },
   "dependencies": {
     "fastify": "4.19.2",
-    "fastify-zod": "1.4.0"
+    "fastify-zod": "1.4.0",
+    "mysql2": "3.3.2",
+    "pluralize": "8.0.0",
+    "typeorm": "0.3.17"
   },
   "devDependencies": {
     "@types/node": "18.16.1",
+    "@types/pluralize": "0.0.29",
     "ts-node-dev": "2.0.0",
     "tsconfig-paths": "4.2.0",
     "typescript": "5.2.2"

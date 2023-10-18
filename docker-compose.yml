@@ -1,5 +1,7 @@
 version: "3"
 
+volumes:
+  db-store:
 services:
   fastify-app:
     container_name: fastify-app-prod
@@ -10,5 +12,26 @@ services:
     restart: always
     environment:
       - APP_HOST=0.0.0.0
+      - DB_HOST=${DB_HOST}
+      - DB_PORT=${DB_PORT}
+      - DB_USERNAME=${MYSQL_USER}
+      - DB_PASSWORD=${MYSQL_PASSWORD}
+      - DB_NAME=${MYSQL_DATABASE}
     ports:
       - 8080:8000
+  mysql:
+    container_name: mysql
+    build:
+      context: ./
+      dockerfile: ./mysql/Dockerfile
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - TZ="Asia/Tokyo"
+    ports:
+      - 13307:3306
+    volumes:
+      - db-store:/var/lib/mysql
+      - ./mysql/init.sql:/docker-entrypoint-initdb.d/init.sql

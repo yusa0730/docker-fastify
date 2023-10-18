@@ -7,7 +7,7 @@ COPY yarn.lock .
 
 FROM base as deps
 
-RUN yarn install --frozen-lockfile
+RUN yarn install
 
 FROM deps as build
 
@@ -20,7 +20,8 @@ FROM base as final
 COPY --from=build /opt/app/package.json ./package.json
 COPY --from=build /opt/app/dist ./dist
 
-RUN yarn install --frozen-lockfile --production
+RUN yarn install --production
+RUN yarn add ts-node@10.9.1
 
 CMD node dist/bootstrap.js
 

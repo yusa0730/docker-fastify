@@ -1,6 +1,7 @@
 import Fastify, { FastifyInstance } from "fastify";
 import { FastifyZod, buildJsonSchemas, register } from "fastify-zod";
 import { patchSchemas, registerRoutes } from "./app";
+import ds from "./db/ds";
 
 export const server: FastifyInstance = Fastify({
   logger: true,
@@ -13,6 +14,7 @@ declare module "fastify" {
 }
 
 const bootstrap = async () => {
+  await ds.initialize();
   await register(server, {
     jsonSchemas: buildJsonSchemas(patchSchemas),
   });

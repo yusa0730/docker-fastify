@@ -1,20 +1,36 @@
 import { FastifyInstance } from "fastify";
-import { getSampleHandler } from "./controller";
+import { getMessageHandler, postMessageHandler } from "./controller";
 
 export const createSampleRoutes = async (server: FastifyInstance) => {
   server.zod.get(
-    "/sample",
+    "/message",
     {
-      operationId: "getSample",
-      querystring: "getSampleRequestSchema",
+      operationId: "getMessage",
+      querystring: "getMessageRequestSchema",
       response: {
         200: {
           description: "Sample",
-          key: "getSampleResponseSchema",
+          key: "getMessageResponseSchema",
         },
       },
-      tags: ["Sample"],
+      tags: ["Message"],
     },
-    getSampleHandler
+    getMessageHandler
+  );
+
+  server.zod.post(
+    "/message",
+    {
+      operationId: "postMessage",
+      body: "postMessageRequestSchema",
+      response: {
+        200: {
+          description: "Sample",
+          key: "postMessageResponseSchema",
+        },
+      },
+      tags: ["Message"],
+    },
+    postMessageHandler
   );
 };
